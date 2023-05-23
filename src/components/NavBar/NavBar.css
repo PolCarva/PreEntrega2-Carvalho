@@ -1,0 +1,40 @@
+/* Estilos generales */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 4em;
+    background-color: var(--color-light);
+}
+
+.nav-list {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-right: 3em;
+    position: relative;
+}   
+
+.nav-item::before {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-main);
+    bottom: -0.4em;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: 0.3s ease;
+}
+.nav-item:hover::before {
+    width: 100%;
+}
+
+
+.nav-item:last-child {
+    margin-right: 0;
+}
