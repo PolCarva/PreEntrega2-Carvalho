@@ -1,38 +1,74 @@
-import React from 'react'
-//1) Importar una función de React que me ayuda a trabajar con el estado. (useState)
-import { useState } from 'react'
+import React from "react";
+import { useState } from "react";
 
-const ItemCount = () => {
-    //Acá en la parte superior del componente siempre voy a trabajr con los hooks: 
-    const [contador, setContador] = useState(1);
-    //Entre los () voy a pasarle el valor inicial del estado. 
-    //2) useState me retorna un array con dos elementos. El primero es el estado y el segundo es una función que me actualiza el valor del estado. 
+const ItemCount = ({ stock, agregarProducto }) => {
+  const [count, setCount] = useState(1);
 
-    //Funciones para los eventos: 
-
-    let maximoStock = 10; 
-
-    const incrementar = () => {
-        if(contador < maximoStock) {
-            setContador(contador + 1);
-        }
+  const incrementar = () => {
+    if (count < stock) {
+      setCount(count + 1);
     }
+  };
 
-    const decrementar = () => {
-        if(contador > 1){
-            setContador(contador - 1);
-        }
+  const decrementar = () => {
+    if (count > 1) {
+      setCount(count - 1);
     }
+  };
+
+  const validateCount = (e) => {
+    const value = e.target.value;
+    if (value === "") {
+      setCount(value);
+    } else {
+      const intValue = parseInt(value);
+      if (intValue < 1) {
+        setCount(1);
+      } else if (intValue > stock) {
+        setCount(stock);
+      } else {
+        setCount(intValue);
+      }
+    }
+  };
+
+  const validateOut = (e) => {
+    if (e.target.value === "") {
+      setCount(1);
+    }
+  };
 
   return (
-    <div>
-        <button onClick={ decrementar }> - </button>
-        <p> {contador} </p>
-        <button onClick={ incrementar }> + </button>
+    <div className="d-flex">
+      <button className="btn btn-main me-2" onClick={decrementar}>
+        {" "}
+        -{" "}
+      </button>
+
+      <input
+        className="form-control text-center me-3"
+        id="inputQuantity"
+        type="text"
+        value={count}
+        onChange={validateCount}
+        onBlur={validateOut}
+      />
+      <button className="btn btn-main me-2" onClick={incrementar}>
+        {" "}
+        +{" "}
+      </button>
+      <button
+        className="btn outlined-btn flex-shrink-0 text-uppercase color-main col-4"
+        type="button"
+        onClick={() => {
+          agregarProducto(count);
+        }}
+      >
+        <i className="bi-cart-fill me-1" />
+        ADD
+      </button>
     </div>
-  )
-}
+  );
+};
 
-//Incrementar y decrementar van sin parentesis porque si no se ejecutarían al momento de renderizar el componente. Y solo queremos que se ejecute cuando el visitante haga click en los botones. 
-
-export default ItemCount
+export default ItemCount;

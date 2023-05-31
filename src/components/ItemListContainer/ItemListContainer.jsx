@@ -2,10 +2,11 @@ import { useState, useEffect } from "react";
 import ItemList from "../ItemList/ItemList";
 import { getProductos, getProductosPorCategoria } from "../../asyncmock";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
 
 const ItemListContainer = () => {
   const [productos, setProductos] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
   const { idCategoria } = useParams();
 
   useEffect(() => {
@@ -26,20 +27,7 @@ const ItemListContainer = () => {
       });
   }, [idCategoria]);
 
-  return (
-    <>
-      {isLoading ? (
-        <div className="d-flex flex-column justify-content-center align-items-center mt-5 pt-5">
-          <div className="spinner-border" role="status">
-          </div>
-            <span className="mt-4">Loading...</span>
-        </div>
-      ) : (
-        <ItemList productos={productos} />
-      )}
-    </>
-  );
+  return <>{isLoading ? <Loader /> : <ItemList productos={productos} />}</>;
 };
-
 
 export default ItemListContainer;
