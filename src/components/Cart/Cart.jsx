@@ -22,12 +22,18 @@ const Cart = () => {
         <CartItem key={producto.id} {...producto} />
       ))}
       <div className="col-6 m-auto text-center">
-        <h3>Total: ${total.toFixed(2)}</h3>
-        <h3>Cantidad Total: {cantidadTotal}</h3>
-        <button onClick={() => vaciarCarrito()} className="btn outlined col-4 me-1"> Vaciar Carrito </button>
+        <h3>Total Price: ${total.toFixed(2)}</h3>
+        <h3>Total Items: {cantidadTotal}</h3>
+        <button
+          onClick={() => vaciarCarrito()}
+          className="btn outlined col-4 me-1"
+        >
+          {" "}
+          Clear Cart{" "}
+        </button>
         <Link to="/checkout" className="btn btn-main col-5 ms-1">
           {" "}
-          Finalizar Compra{" "}
+          Go Checkout{" "}
         </Link>
       </div>
     </div>

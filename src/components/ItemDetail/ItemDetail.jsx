@@ -17,7 +17,7 @@ const ItemDetail = ({ id, nombre, precio, img, stock }) => {
   };
 
   return (
-    <section className="detailContainer">
+    <section className="detailContainer col-11 m-auto align-items-center">
       <div className="container px-4 px-lg-5">
         <div className="row gx-4 gx-lg-5 align-items-center">
           <div className="col-md-6">
@@ -40,7 +40,9 @@ const ItemDetail = ({ id, nombre, precio, img, stock }) => {
               delectus ipsam minima ea iste laborum vero?
             </p>
             {agregarCantidad > 0 ? (
-              <Link to={"/cart"} className="btn btn-main">Finish Buying</Link>
+              <Link to={"/cart"} className="btn btn-main">
+                Finish Buying
+              </Link>
             ) : (
               <ItemCount stock={stock} agregarProducto={manejadorCantidad} />
             )}

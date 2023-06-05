@@ -6,8 +6,8 @@
     background-color: var(--color-light);
     position: fixed;
     width: 100%;
-    background-color: var(--color-light);
     z-index: 1;
+    opacity: 0.5;
 }
 
 .nav-list {
